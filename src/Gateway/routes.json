@@ -1,0 +1,62 @@
+{
+  "ReverseProxy": {
+    "Clusters": {
+      "ServerCA": {
+        "Destinations": {
+          "Server1": {
+            "Address": "http://localhost:5000"
+          }
+        }
+      },
+      "ServerES": {
+        "Destinations": {
+          "Server1": {
+            "Address": "http://localhost:5001"
+          }
+        }
+      }
+    },
+    "Routes": {
+      "ServerRoute1": {
+        "ClusterId": "ServerES",
+        "Match": {
+          "Path": "es/api/{**catch-all}"
+        },
+        "Transforms": [
+          {
+            "PathRemovePrefix": "/es"
+          }
+        ]
+      },
+      "ServerSwaggerRoute1": {
+        "ClusterId": "ServerES",
+        "Match": {
+          "Path": "es/swagger/{**catch-all}"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/es/swagger" }
+        ]
+      },
+      "ServerRoute2": {
+        "ClusterId": "ServerCA",
+        "Match": {
+          "Path": "ca/api/{**catch-all}"
+        },
+        "Transforms": [
+          {
+            "PathRemovePrefix": "/ca"
+          }
+        ]
+      },
+      "ServerSwaggerRoute2": {
+        "ClusterId": "ServerCA",
+        "Match": {
+          "Path": "ca/swagger/{**catch-all}"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/ca/swagger" }
+        ]
+      }
+    }
+  }
+}
