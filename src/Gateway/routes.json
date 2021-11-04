@@ -20,7 +20,7 @@
       "ServerRoute1": {
         "ClusterId": "ServerES",
         "Match": {
-          "Path": "es/api/{**catch-all}"
+          "Path": "es/{**catch-all}"
         },
         "Transforms": [
           {
@@ -28,33 +28,15 @@
           }
         ]
       },
-      "ServerSwaggerRoute1": {
-        "ClusterId": "ServerES",
-        "Match": {
-          "Path": "es/swagger/{**catch-all}"
-        },
-        "Transforms": [
-          { "PathRemovePrefix": "/es/swagger" }
-        ]
-      },
       "ServerRoute2": {
         "ClusterId": "ServerCA",
         "Match": {
-          "Path": "ca/api/{**catch-all}"
+          "Path": "ca/{**catch-all}"
         },
         "Transforms": [
           {
             "PathRemovePrefix": "/ca"
           }
-        ]
-      },
-      "ServerSwaggerRoute2": {
-        "ClusterId": "ServerCA",
-        "Match": {
-          "Path": "ca/swagger/{**catch-all}"
-        },
-        "Transforms": [
-          { "PathRemovePrefix": "/ca/swagger" }
         ]
       }
     }
