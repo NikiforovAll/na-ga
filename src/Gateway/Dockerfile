@@ -6,8 +6,12 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+
 WORKDIR /src
+COPY ["Directory.Build.props", "src/"]
+COPY ["Directory.Packages.props", "src/"]
 COPY ["src/Gateway/Gateway.csproj", "src/Gateway/"]
+
 RUN dotnet restore "src/Gateway/Gateway.csproj"
 COPY . .
 WORKDIR "/src/src/Gateway"
