@@ -23,4 +23,4 @@ RUN dotnet publish "Gateway.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Gateway.dll"]
+ENTRYPOINT ["dotnet", "NikiforovAll.GA.Template.Gateway.dll"]
